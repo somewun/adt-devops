@@ -10,25 +10,24 @@
 
 What does your application do? (1-2 sentences)
 
-_______________________________________________________________
+Weather app
 
-_______________________________________________________________
 
 Who would use it?
 
-_______________________________________________________________
+Me
 
 **2. Technical Architecture**
 
 What technology stack are you considering?
-- **Language/Framework:** _______________________________________
-- **Database (if needed):** _______________________________________
-- **Other components:** _______________________________________
+- **Language/Framework:** Python and Flask
+- **Database (if needed):** AWS to host the web app???
+- **Other components:** Not sure (github for version control) 
 
 Application type: 
 - [ ] Single page
-- [ ] Multi-page
-- [ ] API + Frontend
+- [ ] Multi-page 
+- [X] API + Frontend 
 - [ ] Other: _________
 
 **3. Pipeline Opportunities**
@@ -36,19 +35,19 @@ Application type:
 | Pipeline Element | How my application enables this |
 |-----------------|--------------------------------|
 | **Source Control** | |
-| | |
+| | | GitHub
 | **Automated Testing** | |
-| | |
+| | | 
 | **Build Process** | |
-| | |
+| | | 
 | **Infrastructure as Code** | |
-| | |
+| | | Provision a AWS host server
 | **Deployment Automation** | |
-| | |
+| | | 
 | **Configuration Management** | |
-| | |
+| | | 
 | **Monitoring/Logging** | |
-| | |
+| | | 
 
 **4. Complexity Balance**
 
@@ -58,7 +57,7 @@ _______________________________________________________________
 
 Confidence in implementing this:
 - [ ] Low
-- [ ] Medium
+- [X] Medium
 - [ ] High
 
 Why? _________________________________________________________
@@ -68,11 +67,9 @@ Why? _________________________________________________________
 ## Part 2: Notes from Peer Challenge 
 
 ### Strengths Identified
-_______________________________________________________________
+The app is doable and will show things like the config files for the app, we can use github for source control, 
 
-_______________________________________________________________
 
-_______________________________________________________________
 
 ### Risks or Concerns Raised
 _______________________________________________________________
@@ -82,14 +79,12 @@ _______________________________________________________________
 _______________________________________________________________
 
 ### Suggestions Received
-_______________________________________________________________
+Think more about teh pipeline bit.
 
-_______________________________________________________________
 
-_______________________________________________________________
 
 ### Questions That Made Me Think
-1. ____________________________________________________________
+1. What is teh pipeline setup?
 
 2. ____________________________________________________________
 
@@ -108,23 +103,18 @@ _______________________________________________________________
 
 **What feedback resonated most with you?**
 
-_______________________________________________________________
+Keep it simple to make it possible and easy to.
 
-_______________________________________________________________
 
 **What will you change about your application idea?**
 
-_______________________________________________________________
+drop one idea and go for the example weather one.
 
-_______________________________________________________________
 
-_______________________________________________________________
 
 **What will you keep the same and why?**
 
-_______________________________________________________________
-
-_______________________________________________________________
+The general Idea.
 
 **Do you need to reconsider your entire approach?** ☐ Yes  ☐ No
 
@@ -160,10 +150,10 @@ _______________________________________________________________
 My application will allow me to demonstrate:
 
 ### Practical Skills (40%)
-- [ ] Functional application running in cloud environment
-- [ ] Working deployment pipeline
-- [ ] Infrastructure as Code implementation
-- [ ] Opportunity for advanced features
+- [X] Functional application running in cloud environment
+- [X] Working deployment pipeline
+- [X] Infrastructure as Code implementation
+- [X] Opportunity for advanced features
 
 ### Knowledge & Understanding (20%)
 - [ ] Multiple DevOps concepts to explain
