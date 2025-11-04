@@ -25,7 +25,11 @@ What technology stack are you considering?
 - **Database (if needed):** _______________________________________
 - **Other components:** _______________________________________
 
-Application type: ☐ Single page  ☐ Multi-page  ☐ API + Frontend  ☐ Other: __________
+Application type: 
+- [ ] Single page
+- [ ] Multi-page
+- [ ] API + Frontend
+- [ ] Other: _________
 
 **3. Pipeline Opportunities**
 
@@ -52,15 +56,16 @@ Is this simple enough to implement quickly but complex enough to demonstrate lea
 
 _______________________________________________________________
 
-Confidence in implementing this: ☐ Low  ☐ Medium  ☐ High
+Confidence in implementing this:
+- [ ] Low
+- [ ] Medium
+- [ ] High
 
 Why? _________________________________________________________
 
 ---
 
 ## Part 2: Notes from Peer Challenge 
-
-**Peer Challenger:** _________________________
 
 ### Strengths Identified
 _______________________________________________________________
@@ -91,9 +96,9 @@ _______________________________________________________________
 3. ____________________________________________________________
 
 ### Challenger's Recommendation
-☐ Proceed as is  
-☐ Proceed with modifications  
-☐ Reconsider the approach
+- [ ] Proceed as is  
+- [ ] Proceed with modifications
+- [ ] Reconsider the approach
 
 ---
 
@@ -155,25 +160,25 @@ _______________________________________________________________
 My application will allow me to demonstrate:
 
 ### Practical Skills (40%)
-- ☐ Functional application running in cloud environment
-- ☐ Working deployment pipeline  
-- ☐ Infrastructure as Code implementation
-- ☐ Opportunity for advanced features
+- [ ] Functional application running in cloud environment
+- [ ] Working deployment pipeline
+- [ ] Infrastructure as Code implementation
+- [ ] Opportunity for advanced features
 
 ### Knowledge & Understanding (20%)
-- ☐ Multiple DevOps concepts to explain
-- ☐ Trade-offs and design decisions to justify
-- ☐ Industry-relevant practices to reference
+- [ ] Multiple DevOps concepts to explain
+- [ ] Trade-offs and design decisions to justify
+- [ ] Industry-relevant practices to reference
 
 ### Design & Architecture (20%)
-- ☐ Clear architecture with identifiable components
-- ☐ Rational design decisions to explain
-- ☐ Integration points to demonstrate
+- [ ] Clear architecture with identifiable components
+- [ ] Rational design decisions to explain
+- [ ] Integration points to demonstrate
 
 ### Reflection on Practice (20%)
-- ☐ Genuine challenges to reflect on
-- ☐ Benefits of pipeline approach to articulate
-- ☐ Relevance to organisation and industry
+- [ ] Genuine challenges to reflect on
+- [ ] Benefits of pipeline approach to articulate
+- [ ] Relevance to organisation and industry
 
 ---
 
@@ -206,11 +211,10 @@ Remember: Your job is to help your peer succeed by asking tough questions now, n
 
 After completing this exercise:
 
-1. ☐ Document your final application idea
-2. ☐ Confirm your technology stack
-3. ☐ Get facilitator approval if required  
-4. ☐ Begin environment setup
-5. ☐ Create initial project structure
-6. ☐ Focus on pipeline, not perfecting the application!
+1. Document your final application idea
+2. Confirm your technology stack
+3. Plan environment setup
+4. Create initial project structure
+5. Focus on pipeline, not perfecting the application!
 
-**Remember:** You may use AI to generate your application code. This is explicitly permitted. Focus your time and energy on building an excellent pipeline, not on perfecting the application itself.
+**Note:** You may use AI to generate your application code. This is explicitly permitted (but remember to log those prompts). Focus your time and energy on building an excellent pipeline, not on perfecting the application itself.
