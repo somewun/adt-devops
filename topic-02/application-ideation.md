@@ -20,9 +20,9 @@ Me
 **2. Technical Architecture**
 
 What technology stack are you considering?
-- **Language/Framework:** Python and Flask
+- **Language/Framework:** Python and Flask backend, React for front end??
 - **Database (if needed):** AWS to host the web app???
-- **Other components:** Not sure (github for version control) 
+- **Other components:** Not sure (github for version control) , Jenkins for CI/CD??
 
 Application type: 
 - [ ] Single page
@@ -34,19 +34,19 @@ Application type:
 
 | Pipeline Element | How my application enables this |
 |-----------------|--------------------------------|
-| **Source Control** | |
-| | | GitHub
-| **Automated Testing** | |
+| **Source Control** | GitHub |
 | | | 
-| **Build Process** | |
+| **Automated Testing** | TBC |
 | | | 
-| **Infrastructure as Code** | |
-| | | Provision a AWS host server
-| **Deployment Automation** | |
+| **Build Process** | TBC |
 | | | 
-| **Configuration Management** | |
+| **Infrastructure as Code** | Provision a AWS host server |
 | | | 
-| **Monitoring/Logging** | |
+| **Deployment Automation** | TBC |
+| | | 
+| **Configuration Management** | TBC |
+| | | 
+| **Monitoring/Logging** | TBC |
 | | | 
 
 **4. Complexity Balance**
@@ -67,24 +67,24 @@ Why? _________________________________________________________
 ## Part 2: Notes from Peer Challenge 
 
 ### Strengths Identified
+
 The app is doable and will show things like the config files for the app, we can use github for source control, 
 
 
 
 ### Risks or Concerns Raised
-_______________________________________________________________
 
-_______________________________________________________________
-
-_______________________________________________________________
+Tic Tac Toe too simple, not showing enough stuff.
 
 ### Suggestions Received
-Think more about teh pipeline bit.
+
+Think more about the pipeline bit.
 
 
 
 ### Questions That Made Me Think
-1. What is teh pipeline setup?
+
+1. What is the pipeline setup?
 
 2. ____________________________________________________________
 
@@ -92,7 +92,7 @@ Think more about teh pipeline bit.
 
 ### Challenger's Recommendation
 - [ ] Proceed as is  
-- [ ] Proceed with modifications
+- [X] Proceed with modifications
 - [ ] Reconsider the approach
 
 ---
