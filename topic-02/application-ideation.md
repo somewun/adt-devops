@@ -20,7 +20,7 @@ Me
 **2. Technical Architecture**
 
 What technology stack are you considering?
-- **Language/Framework:** Python and Flask for back end and React for Front end.
+- **Language/Framework:** Python and Flask for back end and HTML for Front end.
 - **Database (if needed):** AWS to host the web app???
 - **Other components:** VS Code for local version of the files, github for version control , Jenkins for CI/CD??
 
