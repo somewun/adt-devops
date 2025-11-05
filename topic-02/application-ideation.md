@@ -20,9 +20,9 @@ Me
 **2. Technical Architecture**
 
 What technology stack are you considering?
-- **Language/Framework:** Python and Flask for back end and React for Front end.
-- **Database (if needed):** AWS to host the web app???
-- **Other components:** VS Code for local version of the files, github for version control , Jenkins for CI/CD??
+- **Language/Framework:** Python and Flask for back end and HTML for Front end.
+- **Database (if needed):** Database used to save favourite locations???
+- **Other components:** VS Code for local version of the files, github for version control , Jenkins for CI/CD??, GitHub pages to host teh front end webapp??
 
 Application type: 
 - [ ] Single page
@@ -36,15 +36,15 @@ Application type:
 |-----------------|--------------------------------|
 | **Source Control** | VS Code and GitHub |
 | | | 
-| **Automated Testing** | TBC |
+| **Automated Testing** | TBC - Selenium? |
 | | | 
-| **Build Process** | TBC |
+| **Build Process** | Build as Containers for Docker? how do I automate this? |
 | | | 
-| **Infrastructure as Code** | Provision a AWS host server |
+| **Infrastructure as Code** | Provision a AWS host server, Docker built on a Linux Server |
 | | | 
 | **Deployment Automation** | TBC |
 | | | 
-| **Configuration Management** | TBC |
+| **Configuration Management** | TBC - IaaS/PaaS? |
 | | | 
 | **Monitoring/Logging** | TBC |
 | | | 
