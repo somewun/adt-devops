@@ -1,0 +1,5 @@
+Prerequisites
+Python 3.7+ installed.
+An OpenWeatherMap API Key: Sign up for a free key on the OpenWeatherMap website.
+Flask and requests libraries: pip install flask requests python-dotenv.
+A project structure with a templates folder for HTML files. 

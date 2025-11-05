@@ -1,0 +1,134 @@
+Prompt: "open weather API front end web app using python and flask"
+
+Building an OpenWeather API front-end web app with Python and Flask involves fetching data on the server-side and rendering it using Flask's templating engine, Jinja2. 
+Prerequisites
+Python 3.7+ installed.
+An OpenWeatherMap API Key: Sign up for a free key on the OpenWeatherMap website.
+Flask and requests libraries: pip install flask requests python-dotenv.
+A project structure with a templates folder for HTML files. 
+Step-by-Step Guide
+1. Project Setup and Environment Variables
+Create a project directory and a virtual environment: 
+bash
+mkdir weather_app_flask
+cd weather_app_flask
+python -m venv venv
+# On Windows: venv\Scripts\activate
+# On macOS/Linux: source venv/bin/activate
+pip install flask requests python-dotenv
+Use code with caution.
+
+Create a file named .env in the root directory to store your API key securely: 
+OPENWEATHER_API_KEY="YOUR_API_KEY_HERE"
+Create your main application file, app.py, and a templates folder: 
+bash
+touch app.py
+mkdir templates
+touch templates/index.html
+Use code with caution.
+
+2. The Flask Application (app.py)
+This file handles the backend logic: fetching data from the API and rendering the HTML template. 
+python
+import os
+import requests
+from flask import Flask, render_template, request, abort
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+API_KEY = os.environ.get("OPENWEATHER_API_KEY")
+BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    weather_data = None
+    city = request.form.get('city') if request.method == 'POST' else 'London' # Default city or user input
+
+    if not API_KEY:
+        abort(500, description="OpenWeatherMap API key not configured.")
+
+    if city:
+        params = {
+            'q': city,
+            'appid': API_KEY,
+            'units': 'metric'  # Use 'imperial' for Fahrenheit
+        }
+        try:
+            response = requests.get(BASE_URL, params=params)
+            response.raise_for_status() # Raise an exception for bad status codes
+            data = response.json()
+
+            if data['cod'] == 200:
+                weather_data = {
+                    'city': data['name'],
+                    'country': data['sys']['country'],
+                    'temperature': round(data['main']['temp']),
+                    'description': data['weather'][0]['description'].capitalize(),
+                    'icon': data['weather'][0]['icon'],
+                    'humidity': data['main']['humidity'],
+                    'wind_speed': data['wind']['speed']
+                }
+            else:
+                # Handle city not found or other API specific errors
+                return render_template('index.html', error=data.get('message', 'City not found'), city_input=city)
+
+        except requests.exceptions.RequestException as e:
+            return render_template('index.html', error=f"Network error: {e}", city_input=city)
+        except Exception as e:
+            return render_template('index.html', error=f"An unexpected error occurred: {e}", city_input=city)
+
+    return render_template('index.html', weather=weather_data, city_input=city)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+Use code with caution.
+
+3. The Front End Template (templates/index.html) 
+This file provides the user interface with an input form and displays the weather information using Jinja2 syntax (e.g., {{ weather.city }}). 
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .weather-card { border: 1px solid #ccc; padding: 20px; max-width: 400px; margin-top: 20px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Weather App</h1>
+
+    <form method="POST" action="/">
+        <input type="text" name="city" placeholder="Enter city name" value="{{ city_input or '' }}" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% elif weather %}
+        <div class="weather-card">
+            <h2>{{ weather.city }}, {{ weather.country }}</h2>
+            <p><strong>Temperature:</strong> {{ weather.temperature }}°C</p>
+            <p><strong>Condition:</strong> {{ weather.description }}</p>
+            <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
+            <p><strong>Wind Speed:</strong> {{ weather.wind_speed }} m/s</p>
+            <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Weather icon">
+        </div>
+    {% endif %}
+
+</body>
+</html>
+Use code with caution.
+
+4. Run the Application
+In your terminal, make sure your virtual environment is active, and run the app: 
+bash
+python app.py
+Use code with caution.
+
+Open your web browser and go to http://127.0.0.1:5000/. You can enter a city name to see the weather information. 
