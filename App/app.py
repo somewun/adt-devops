@@ -5,10 +5,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from datetime import date
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
+# OpenWeather configuration
 API_KEY = os.environ.get("OPENWEATHER_API_KEY")
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
@@ -50,14 +52,34 @@ class FavoriteLocation(db.Model):
         db.UniqueConstraint('user_id', 'city_name', name='uix_user_city'),
     )
 
+
+class APICallCounter(db.Model):
+    """Counts API calls per day, optionally per user."""
+    __tablename__ = 'api_call_counters'
+    id = db.Column(db.Integer, primary_key=True)
+    day = db.Column(db.Date, nullable=False, index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=True, index=True)
+    count = db.Column(db.Integer, default=0, nullable=False)
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
 def get_weather_data(city):
-    """Helper function to fetch weather data for a city"""
+    """Fetch weather from OpenWeatherMap."""
     if not API_KEY:
         abort(500, description="OpenWeatherMap API key not configured.")
+
+    # Reserve an API call (per-user or global). If limit reached, raise.
+    # Determine user id if available from the request context.
+    user_id = current_user.id if current_user and current_user.is_authenticated else None
+    try:
+        if not reserve_api_call(user_id):
+            raise APILimitExceeded()
+    except APILimitExceeded:
+        # Propagate to caller to handle user-friendly message
+        raise
 
     params = {
         'q': city,
@@ -68,17 +90,78 @@ def get_weather_data(city):
     response.raise_for_status()
     data = response.json()
 
-    if data['cod'] == 200:
+    if str(data.get('cod')) == '200':
         return {
-            'city': data['name'],
-            'country': data['sys']['country'],
-            'temperature': round(data['main']['temp']),
-            'description': data['weather'][0]['description'].capitalize(),
-            'icon': data['weather'][0]['icon'],
-            'humidity': data['main']['humidity'],
-            'wind_speed': data['wind']['speed']
+            'city': data.get('name'),
+            'country': data.get('sys', {}).get('country'),
+            'temperature': round(data.get('main', {}).get('temp')) if data.get('main') else None,
+            'description': data.get('weather', [{}])[0].get('description', '').capitalize(),
+            'icon': data.get('weather', [{}])[0].get('icon'),
+            'humidity': data.get('main', {}).get('humidity') if data.get('main') else None,
+            'wind_speed': data.get('wind', {}).get('speed') if data.get('wind') else None
         }
     return None
+
+
+class APILimitExceeded(Exception):
+    pass
+
+
+def reserve_api_call(user_id=None):
+    """Attempt to reserve one API call for today.
+
+    Returns True if allowed and increments the counter, False if limit reached.
+
+    Behavior:
+    - If user_id provided and API_DAILY_LIMIT_PER_USER is set, enforce per-user limit.
+    - Otherwise, if API_DAILY_LIMIT_GLOBAL is set enforce global limit (user_id NULL row).
+    - If neither limit is configured, allow unlimited calls.
+    """
+    # Read limits from environment (integers) - defaults: per-user 100, global 1000
+    try:
+        per_user_limit = int(os.environ.get('API_DAILY_LIMIT_PER_USER', '100'))
+    except Exception:
+        per_user_limit = 100
+    try:
+        global_limit = int(os.environ.get('API_DAILY_LIMIT_GLOBAL', '1000'))
+    except Exception:
+        global_limit = 900
+
+    today = date.today()
+
+    # If user is authenticated, check/consume per-user quota first
+    if user_id is not None:
+        counter = APICallCounter.query.filter_by(day=today, user_id=user_id).first()
+        if not counter:
+            counter = APICallCounter(day=today, user_id=user_id, count=0)
+            db.session.add(counter)
+            db.session.flush()
+
+        if per_user_limit is not None:
+            if counter.count >= per_user_limit:
+                return False
+            counter.count += 1
+            db.session.commit()
+            return True
+
+    # Fallback to global limit (for anonymous users or if per-user not set)
+    counter = APICallCounter.query.filter_by(day=today, user_id=None).first()
+    if not counter:
+        counter = APICallCounter(day=today, user_id=None, count=0)
+        db.session.add(counter)
+        db.session.flush()
+
+    if global_limit is not None:
+        if counter.count >= global_limit:
+            return False
+        counter.count += 1
+        db.session.commit()
+        return True
+
+    # If limits are not configured, allow call
+    return True
+
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -131,14 +214,15 @@ def index():
     favorites_weather = []
     city = request.form.get('city') if request.method == 'POST' else 'London' # Default city or user input
 
-    if not API_KEY:
-        abort(500, description="OpenWeatherMap API key not configured.")
+    # Weather provider specific configuration/validation is handled inside get_weather_data
 
     if city:
         try:
             weather_data = get_weather_data(city)
             if not weather_data:
                 return render_template('index.html', error='City not found', city_input=city)
+        except APILimitExceeded:
+            return render_template('index.html', error='Daily API call limit reached. Try again tomorrow.', city_input=city)
         except requests.exceptions.RequestException as e:
             return render_template('index.html', error=f"Network error: {e}", city_input=city)
         except Exception as e:
@@ -155,6 +239,9 @@ def index():
                 weather = get_weather_data(fav.city_name)
                 if weather:
                     favorites_weather.append(weather)
+            except APILimitExceeded:
+                # Stop fetching more favorites if limit reached
+                break
             except:
                 continue
 
@@ -187,6 +274,8 @@ def add_favorite(city):
                 db.session.add(favorite)
                 db.session.commit()
                 flash(f'Added {weather_data["city"]} to favorites')
+    except APILimitExceeded:
+        flash('Daily API call limit reached. Could not add favorite.')
     except:
         flash('Could not add city to favorites')
     return redirect(url_for('index'))
