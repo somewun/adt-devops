@@ -40,7 +40,7 @@ Application type:
 | | | 
 | **Build Process** | Build as Containers for Docker? how do I automate this? |
 | | | 
-| **Infrastructure as Code** | Provision a AWS host server, Docker built on a Linux Server |
+| **Infrastructure as Code** | Provision a AWS host server, Docker built on a Linux Server or use CloudFlare |
 | | | 
 | **Deployment Automation** | TBC |
 | | | 

@@ -9,56 +9,69 @@ Requires Flask to run. If Flask is not installed the app will print a helpful me
 
 import os
 import sys
-import csv
 import random
+import sqlite3
 from pathlib import Path
+from contextlib import contextmanager
 
 try:
-	from flask import Flask, render_template, session, redirect, url_for, flash
+    from flask import Flask, render_template, session, redirect, url_for, flash, g
 except Exception as e:
-	# Provide a helpful message if Flask is missing; don't crash on import so static analysis can still read the file
-	print("Flask is required to run this web app. Install it with: pip install flask")
-	raise
+    # Provide a helpful message if Flask is missing; don't crash on import so static analysis can still read the file
+    print("Flask is required to run this web app. Install it with: pip install flask")
+    raise
 
 BASE_DIR = Path(__file__).resolve().parent
-CSV_PATH = BASE_DIR / 'QandA.csv'
+DB_PATH = BASE_DIR / '.wrangler/state/d1/DB.sqlite3'  # Local D1 database path
+@contextmanager
+def get_db():
+    """Get database connection (development mode uses SQLite, production uses D1)."""
+    if 'db' not in g:
+        # In production, this would use Cloudflare D1's connection
+        # For local development, we use SQLite
+        g.db = sqlite3.connect(DB_PATH)
+        g.db.row_factory = sqlite3.Row
+    
+    try:
+        yield g.db
+    finally:
+        if 'db' in g:
+            g.db.close()
+            g.pop('db')
 
-
-def load_qas(csv_path=CSV_PATH):
-	"""Load questions and answers from a CSV file.
-
-	Expects format: ID,Question,Answer (with header or without). Returns two lists: questions, answers.
-	"""
-	questions = []
-	answers = []
-	if not csv_path.exists():
-		return questions, answers
-
-	with open(csv_path, newline='', encoding='utf-8') as fh:
-		reader = csv.reader(fh)
-		for row in reader:
-			if not row:
-				continue
-			# tolerate an optional header row
-			if row[0].strip().lower() in ('id', 'i', 'index') or row[1].strip().lower() == 'question':
-				# skip header if detected
-				try:
-					int(row[0])
-				except Exception:
-					continue
-
-			# Expect at least 3 columns: ID, Question, Answer. If shorter, skip.
-			if len(row) < 3:
-				continue
-			questions.append(row[1])
-			answers.append(row[2])
-
-	return questions, answers
-
-
+def load_qas():
+    """Load questions and answers from D1 database.
+    
+    Returns two lists: questions, answers.
+    """
+    questions = []
+    answers = []
+    
+    if not DB_PATH.exists():
+        print(f"Database not found at {DB_PATH}. Run migrations first.")
+        return questions, answers
+        
+    try:
+        with get_db() as db:
+            cursor = db.execute('SELECT question, answer FROM questions ORDER BY id')
+            rows = cursor.fetchall()
+            for row in rows:
+                questions.append(row['question'])
+                answers.append(row['answer'])
+    except Exception as e:
+        print(f"Database error: {e}")
+        
+    return questions, answers
 app = Flask(__name__)
 # Use a simple secret for session; in production set a secure fixed secret via env var
 app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
+
+@app.teardown_appcontext
+def close_db(error):
+    """Close database connection at the end of request."""
+    if 'db' in g:
+        g.db.close()
+        g.pop('db')
 
 # Load Q/A once at startup
 QUESTIONS, ANSWERS = load_qas()
@@ -134,6 +147,7 @@ if __name__ == '__main__':
 	# When run directly, start the Flask dev server
 	if not QUESTIONS:
 		print('Warning: No questions loaded from QandA.csv. Create a CSV with format: ID,Question,Answer')
+
 	# If running in an interactive environment (notebook), disable the reloader
 	# because the reloader spawns a child and exits the parent with SystemExit(1).
 	use_reloader = True
