@@ -8,6 +8,7 @@ Requires Flask to run. If Flask is not installed the app will print a helpful me
 """
 
 import os
+import sys
 import csv
 import random
 from pathlib import Path
@@ -133,5 +134,11 @@ if __name__ == '__main__':
 	# When run directly, start the Flask dev server
 	if not QUESTIONS:
 		print('Warning: No questions loaded from QandA.csv. Create a CSV with format: ID,Question,Answer')
-	app.run(host='127.0.0.1', port=5000, debug=True)
+	# If running in an interactive environment (notebook), disable the reloader
+	# because the reloader spawns a child and exits the parent with SystemExit(1).
+	use_reloader = True
+	if hasattr(sys, 'ps1') or 'ipykernel' in sys.modules or 'get_ipython' in globals():
+		use_reloader = False
+
+	app.run(host='127.0.0.1', port=5000, debug=True, use_reloader=use_reloader)
 
