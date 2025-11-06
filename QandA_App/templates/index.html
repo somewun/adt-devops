@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QandA Revision</title>
+    <style>
+      body { font-family: Arial, Helvetica, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; }
+      .card { border: 1px solid #ddd; padding: 1rem; border-radius: 6px; }
+      .question { font-size: 1.2rem; font-weight: bold; }
+      .answer { margin-top: 1rem; color: #1155cc; }
+      .controls { margin-top: 1rem; }
+      .controls a { display: inline-block; margin-right: 0.5rem; padding: 0.5rem 0.75rem; background:#007bff; color: white; text-decoration: none; border-radius:4px }
+      .controls a.secondary { background:#6c757d }
+      .muted { color:#666; font-size:0.9rem }
+    </style>
+  </head>
+  <body>
+    <h1>QandA Revision</h1>
+
+    <div class="card">
+      <div class="question">{{ question }}</div>
+      {% if show_answer %}
+      <div class="answer">Answer: {{ answer }}</div>
+      {% else %}
+      <div class="muted">Answer hidden — press "View Answer" to reveal.</div>
+      {% endif %}
+
+      <div class="controls">
+        <a href="{{ url_for('next_q') }}">Next Q</a>
+        <a href="{{ url_for('random_q') }}" class="secondary">Random Q</a>
+        <a href="{{ url_for('view_answer') }}">View Answer</a>
+        <a href="{{ url_for('about') }}" class="secondary">About</a>
+      </div>
+    </div>
+
+    <p class="muted">Total questions: {{ total_questions }}</p>
+  </body>
+</html>
