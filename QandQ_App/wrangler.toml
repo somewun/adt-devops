@@ -1,0 +1,7 @@
+name = "qanda-app"
+compatibility_date = "2025-11-06"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "qanda-questions"
+database_id = "YOUR-DATABASE-ID-HERE"
