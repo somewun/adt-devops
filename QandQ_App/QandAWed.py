@@ -62,7 +62,9 @@ def load_qas():
         print(f"Database error: {e}")
         
     return questions, answers
-app = Flask(__name__)
+# Ensure Flask locates templates relative to this file's directory (BASE_DIR)
+# This avoids TemplateNotFound when running the script from a different CWD.
+app = Flask(__name__, template_folder=str(BASE_DIR / 'templates'))
 # Use a simple secret for session; in production set a secure fixed secret via env var
 app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
 
@@ -146,7 +148,7 @@ def about():
 if __name__ == '__main__':
 	# When run directly, start the Flask dev server
 	if not QUESTIONS:
-		print('Warning: No questions loaded from QandA.csv. Create a CSV with format: ID,Question,Answer')
+		print('Warning: No questions loaded from the Database. Update the database with format: ID,Question,Answer')
 
 	# If running in an interactive environment (notebook), disable the reloader
 	# because the reloader spawns a child and exits the parent with SystemExit(1).
@@ -154,5 +156,5 @@ if __name__ == '__main__':
 	if hasattr(sys, 'ps1') or 'ipykernel' in sys.modules or 'get_ipython' in globals():
 		use_reloader = False
 
-	app.run(host='127.0.0.1', port=5000, debug=True, use_reloader=use_reloader)
+	app.run(host='127.0.0.1', port=5001, debug=True, use_reloader=use_reloader)
 
