@@ -13,8 +13,8 @@ automate the deployment to CloudFlare
 **By the 9th:**
 
 Have a deployed app,  
-    - Check cloudflare settings for allow urls
-    - check GitHub settings for secrets (see you tube video)
+    - Check cloudflare settings for allow urls  
+    - Check GitHub settings for secrets (see you tube video)  
 Ensure the pipeline will have enough features (In the GitHub Actions)  
     - Config management  
     - Unit tests  
