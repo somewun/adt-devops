@@ -1,6 +1,0 @@
-#Prerequisites
-
-# OpenWeatherMap API Key: Sign up for a free key on the OpenWeatherMap website.
-#pip install flask
-#pip install requests
-#pip install python-dotenv
