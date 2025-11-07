@@ -4,7 +4,7 @@ Using this Repo to store my Uni work for a DevOps module
 
 To Do list:
 
-Wrangler deploy file to run in terminal - DONE 
+Wrangler deploy file to run in terminal - DONE  
 unit testing scripts  
 automate the CI/CD in github  
 automate the deployment to CloudFlare  
@@ -15,10 +15,11 @@ automate the deployment to CloudFlare
 Have a deployed app,  
     - Check cloudflare settings for allow urls  
     - Check GitHub settings for secrets (see you tube video)  
+    
 Ensure the pipeline will have enough features (In the GitHub Actions)  
     - Config management  
     - Unit tests  
-    - linting  
+    - Linting  
     - Logging of tests  
 
 The app needs to have these built into the app/pipeline to run (tests etc)  
