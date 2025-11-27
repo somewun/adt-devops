@@ -1,4 +1,4 @@
-"""QandAWed.py
+"""QandAWeb.py
 
 Converted from a PyQt desktop app to a simple Flask web app.
 
