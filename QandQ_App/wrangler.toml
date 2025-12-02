@@ -1,5 +1,6 @@
 name = "qanda-app"
 compatibility_date = "2025-11-06"
+main = /QandQ_App
 
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
