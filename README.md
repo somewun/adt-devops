@@ -6,9 +6,9 @@ To Do list:
 
 Wrangler deploy file to run in terminal - DONE  
 unit testing scripts - [First Draft written]
-automate the CI/CD in github  
+automate the CI/CD in github - Started but needs lots of work still 
 automate the deployment to CloudFlare  
-
+Developer stories - [First draft written but need refining]
 
 **By the 9th:**
 

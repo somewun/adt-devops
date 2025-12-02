@@ -31,7 +31,7 @@ jobs:
 
       - name: Build
         working-directory: QandQ_App
-        run:
+        run: 
 
       - name: Deploy  
         uses: cloudflare/wrangler-action@v3
