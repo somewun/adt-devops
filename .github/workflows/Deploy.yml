@@ -1,0 +1,42 @@
+name: QandA Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build and Deploy
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+      
+      - name: Create virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install Dependencies
+        working-directory: QandQ_App
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Build
+        working-directory: QandQ_App
+        run:
+
+      - name: Deploy  
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDLARE_API_TOKEN }}
+          accountID: ${{secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy QandQ_App/build --project-name=qanda
+    

@@ -1,7 +1,8 @@
 name = "qanda-app"
 compatibility_date = "2025-11-06"
+main = /QandQ_App
 
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "qanda-questions"
-database_id = "YOUR-DATABASE-ID-HERE"
+database_id = "1ecfe6dd-d2e5-4da7-a412-bf155997f092"
