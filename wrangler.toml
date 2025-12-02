@@ -1,4 +1,4 @@
-name = "qanda-app"
+name = "qanda"
 compatibility_date = "2025-11-06"
 [assets]
     directory = "./QandQ_App"
