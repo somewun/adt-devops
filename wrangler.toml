@@ -1,8 +1,8 @@
 name = "qanda-app"
 compatibility_date = "2025-11-06"
-assets = {
-    directory = "./QandQ_App
-}
+[assets]
+    directory = "./QandQ_App"
+
 
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
