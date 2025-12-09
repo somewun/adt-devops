@@ -31,12 +31,12 @@ jobs:
 
       - name: Build
         working-directory: QandQ_App
-        run:
+        run: 
 
       - name: Deploy  
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDLARE_API_TOKEN }}
-          accountID: ${{secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{secrets.CLOUDLARE_API_TOKEN}}
+          accountID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
           command: pages deploy QandQ_App/build --project-name=qanda
     
