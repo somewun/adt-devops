@@ -1,30 +1,34 @@
 **ADT DevOps**
 
-Using this Repo to store my Uni work for a DevOps module
+Using this Repo to store my Uni work for a DevOps module.  
 
-To Do list:
+To Do list:  
 
 Wrangler deploy file to run in terminal - DONE  
-unit testing scripts - [First Draft written]
-automate the CI/CD in github - Started but needs lots of work still 
+unit testing scripts - [First Draft written]  
+automate the CI/CD in github - Started but needs lots of work still   
 automate the deployment to CloudFlare  
-Developer stories - [First draft written but need refining]
+Developer stories - [First draft written but need refining]  
 
-**By the 9th:**
+**Things to do:**
 
 Have a deployed app,  
     - Check cloudflare settings for allow urls  
-    - Check GitHub settings for secrets - DONE
+    - Check GitHub settings for secrets - DONE  
     
 Ensure the pipeline will have enough features (In the GitHub Actions)  
     - Config management  
-    - Unit tests  [First draft written]
-    - Linting  [First draft written]
+    - Unit tests  [First draft written]  
+    - Linting  [First draft written]  
     - Logging of tests  
+
+Monitoring  
+    - Think about timing the solution?  
+    - Cloudflare monitoring?  
 
 The app needs to have these built into the app/pipeline to run (tests etc)  
 
 
-Think about the user (developers) stories for each of these things to start planning for my presentations, extend the stories to show how this benefits the full team and why this is important.  
+Think about the user (developer) stories for each of these things to start planning for my presentations, extend the stories to show how this benefits the full team and why this is important.  
 
-Email with thoughts/questions on forum/send link to the repository
+Email with thoughts/questions on forum/send link to the repository - DONE  
