@@ -64,7 +64,7 @@ def load_qas():
     return questions, answers
 # Ensure Flask locates templates relative to this file's directory (BASE_DIR)
 # This avoids TemplateNotFound when running the script from a different CWD.
-app = Flask(__name__, template_folder=str(BASE_DIR / 'templates'))
+app = Flask(__name__, template_folder=str(BASE_DIR / ''))
 # Use a simple secret for session; in production set a secure fixed secret via env var
 app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
 
