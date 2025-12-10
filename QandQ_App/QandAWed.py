@@ -22,7 +22,7 @@ except Exception as e:
     raise
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / '.wrangler/state/d1/DB.sqlite3'  # Local D1 database path
+DB_PATH = BASE_DIR / '.wrangler/state/d1/DB.db'  # Local D1 database path
 @contextmanager
 def get_db():
     """Get database connection (development mode uses SQLite, production uses D1)."""
@@ -67,6 +67,8 @@ def load_qas():
 app = Flask(__name__, template_folder=str(BASE_DIR / ''))
 # Use a simple secret for session; in production set a secure fixed secret via env var
 app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
+#config the app for using the database
+
 
 @app.teardown_appcontext
 def close_db(error):
@@ -75,8 +77,9 @@ def close_db(error):
         g.db.close()
         g.pop('db')
 
+with app.app_context():
 # Load Q/A once at startup
-QUESTIONS, ANSWERS = load_qas()
+	QUESTIONS, ANSWERS = load_qas()
 
 
 @app.context_processor
