@@ -159,6 +159,6 @@ if __name__ == '__main__':
 	if hasattr(sys, 'ps1') or 'ipykernel' in sys.modules or 'get_ipython' in globals():
 		use_reloader = False
 
-	app.run(host='127.0.0.1', port=5002, debug=True, use_reloader=use_reloader)
+	#app.run(host='127.0.0.1', port=5002, debug=True, use_reloader=use_reloader)
 
 
