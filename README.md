@@ -3,17 +3,16 @@
 Using this Repo to store my Uni work for a DevOps module.  
 
 To Do list:  
-
-Wrangler deploy file to run in terminal - DONE  
+  
 unit testing scripts - [First Draft written]  
 automate the CI/CD in github - Started but needs lots of work still   
-automate the deployment to CloudFlare  
+automate the deployment to Render 
 Developer stories - [First draft written but need refining]  
 
 **Things to do:**
 
 Have a deployed app,  
-    - Check cloudflare settings for allow urls  
+    - CDeploys to Render - app URL [adt-devops.onrender.com]  
     - Check GitHub settings for secrets - DONE  
     
 Ensure the pipeline will have enough features (In the GitHub Actions)  
@@ -24,7 +23,7 @@ Ensure the pipeline will have enough features (In the GitHub Actions)
 
 Monitoring  
     - Think about timing the solution?  
-    - Cloudflare monitoring?  
+    - Render monitoring?  
 
 The app needs to have these built into the app/pipeline to run (tests etc)  
 
