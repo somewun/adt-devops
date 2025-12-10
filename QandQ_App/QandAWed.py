@@ -160,5 +160,5 @@ if __name__ == '__main__':
 		use_reloader = False
 
 	#app.run(host='127.0.0.1', port=5002, debug=True, use_reloader=use_reloader)
-	app.run(debug=True, use_reloader=use_reloader)
+
 
