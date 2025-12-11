@@ -1,4 +1,4 @@
-name: QandA Deploy
+name: QandA Render Deploy
 
 on:
   push:
