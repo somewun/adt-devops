@@ -22,7 +22,7 @@ except Exception as e:
     raise
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / '.wrangler/state/d1/DB.sqlite3'  # Local D1 database path
+DB_PATH = BASE_DIR / '.wrangler/state/d1/DB.db'  # Local D1 database path
 @contextmanager
 def get_db():
     """Get database connection (development mode uses SQLite, production uses D1)."""
@@ -64,9 +64,11 @@ def load_qas():
     return questions, answers
 # Ensure Flask locates templates relative to this file's directory (BASE_DIR)
 # This avoids TemplateNotFound when running the script from a different CWD.
-app = Flask(__name__, template_folder=str(BASE_DIR / 'templates'))
+app = Flask(__name__, template_folder=str(BASE_DIR / ''))
 # Use a simple secret for session; in production set a secure fixed secret via env var
 app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
+#config the app for using the database
+
 
 @app.teardown_appcontext
 def close_db(error):
@@ -75,8 +77,9 @@ def close_db(error):
         g.db.close()
         g.pop('db')
 
+with app.app_context():
 # Load Q/A once at startup
-QUESTIONS, ANSWERS = load_qas()
+	QUESTIONS, ANSWERS = load_qas()
 
 
 @app.context_processor
@@ -156,5 +159,6 @@ if __name__ == '__main__':
 	if hasattr(sys, 'ps1') or 'ipykernel' in sys.modules or 'get_ipython' in globals():
 		use_reloader = False
 
-	app.run(host='127.0.0.1', port=5002, debug=True, use_reloader=use_reloader)
+	#app.run(host='127.0.0.1', port=5002, debug=True, use_reloader=use_reloader)
+
 

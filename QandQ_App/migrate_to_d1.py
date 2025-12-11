@@ -12,7 +12,7 @@ import sys
 def migrate_csv_to_d1(csv_path):
     """Migrate CSV data to D1 database (local development version)."""
     # For local development, D1 uses SQLite
-    db_path = '.wrangler/state/d1/DB.sqlite3'
+    db_path = '.wrangler/state/d1/DB.db'
     
     if not Path(csv_path).exists():
         print(f"Error: CSV file not found: {csv_path}")
