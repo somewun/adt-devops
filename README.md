@@ -2,6 +2,8 @@
 
 Using this Repo to store my Uni work for a DevOps module.  
 
+Current app version: 0.0.2
+
 To Do list:  
   
 unit testing scripts - [First Draft written]  

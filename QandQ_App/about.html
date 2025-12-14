@@ -8,14 +8,17 @@
   </head>
   <body>
     <h1>About QandA</h1>
-    <p>A simple Question and Answer revision app converted to a web interface using Flask. Source code can be found here: https://github.com/somewun/adt-devops</p>
+    <p>Version 0.0.2</p>
+    <p>A simple Question and Answer revision app converted to a web interface using Flask. Source code can be found here: https://github.com/somewun/adt-devops
+      <br>This conversion provides a minimal web UI for the same functionality as my orginal app found here: https://github.com/somewun/QandA
+    </p>
     <p>Usage notes:</p>
     <ul>
-      <li>Create a CSV file named <code>QandA.csv</code> in the same folder as this script.</li>
-      <li>CSV format: ID,Question,Answer (you can include a header row).</li>
-      <li>Press Next Q to step through questions, Random Q to jump to a random question, and View Answer to see the answer.</li>
+      <li>Press <b>Next Q</b> to step through questions.</li>
+      <li>Press <b>Random Q</b> to jump to a random question.</li>
+      <li>Press <b>View Answer</b> to see the answer to the current question.</li>
     </ul>
-    <p>This conversion provides a minimal web UI for the same functionality as my orgiinal app found here: https://github.com/somewun/QandA</p>
+    <p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
     <p><a href="{{ url_for('index') }}">Back</a></p>
   </body>
 </html>
