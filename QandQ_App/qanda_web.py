@@ -46,7 +46,7 @@ def load_qas():
     """
     questions = []
     answers = []
-    
+
     if not DB_PATH.exists():
         print(f"Database not found at {DB_PATH}. Run migrations first.")
         return questions, answers
@@ -95,18 +95,18 @@ def index():
     default_answer = "Answers will appear here, press Answer to show the answer"
 
     q_index = session.get('q_index')
-    show_answer = session.get('show_answer', False)
+    show_ans = session.get('show_answer', False)
 
     if q_index is None or not QUESTIONS:
-        question_text = default_question if not QUESTIONS else QUESTIONS[0]
+        quest_text = default_question if not QUESTIONS else QUESTIONS[0]
         ans_text = default_answer
     else:
         # ensure index in range
         q_index = max(0, min(q_index, len(QUESTIONS) - 1))
         quest_text = QUESTIONS[q_index]
-        ans_text = ANSWERS[q_index] if show_answer and ANSWERS else default_answer
+        ans_text = ANSWERS[q_index] if show_ans and ANSWERS else default_answer
 
-    return render_template('index.html', question=quest_text, answer=ans_text, show_answer=show_answer)
+    return render_template('index.html', question=quest_text, answer=ans_text, show_answer=show_ans)
 
 
 @app.route('/next')
@@ -160,8 +160,8 @@ if __name__ == '__main__':
 
     # If running in an interactive environment (notebook), disable the reloader
     # because the reloader spawns a child and exits the parent with SystemExit(1).
-    USE_RELOADER = True
+    use_reloader = True
     if hasattr(sys, 'ps1') or 'ipykernel' in sys.modules or 'get_ipython' in globals():
-        USE_RELOADER = False
+        use_reloader = False
 
 	#app.run(host='127.0.0.1', port=5002, debug=True, use_reloader=use_reloader)
