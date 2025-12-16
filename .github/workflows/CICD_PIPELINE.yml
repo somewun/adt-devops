@@ -29,6 +29,9 @@ jobs:
       run: |
         pylint $(git ls-files '*.py')
 
+#Unit testing???? - needs to run my python file testing the app returning pass or fail?
+
+
 #Deploy the app to Render
   deploy:
     runs-on: ubuntu-latest
