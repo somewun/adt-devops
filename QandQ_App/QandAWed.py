@@ -17,7 +17,8 @@ from contextlib import contextmanager
 try:
     from flask import Flask, render_template, session, redirect, url_for, flash, g
 except Exception as e:
-    # Provide a helpful message if Flask is missing; don't crash on import so static analysis can still read the file
+    # Provide a helpful message if Flask is missing; 
+	# Don't crash on import so static analysis can still read the file
     print("Flask is required to run this web app. Install it with: pip install flask")
     raise
 
@@ -84,14 +85,15 @@ with app.app_context():
 
 @app.context_processor
 def inject_counts():
+	"""Calculates the amount of questions available"""
 	return dict(total_questions=len(QUESTIONS))
 
 
 @app.route('/')
 def index():
-	# Default welcome texts when no questions are loaded or before first Next is pressed
-	default_question = "Questions will appear here, press Next Q to get the first question or Random Q for a random question from the list"
-	default_answer = "Answers will appear here, press Answer to get the answer"
+	"""Default welcome texts when no questions are loaded or before first Next is pressed"""
+	default_question = "Questions will appear here, press Next Q or Random Q to get a question"
+	default_answer = "Answers will appear here, press Answer to show the answer"
 
 	q_index = session.get('q_index')
 	show_answer = session.get('show_answer', False)
@@ -110,6 +112,7 @@ def index():
 
 @app.route('/next')
 def next_q():
+	"""Moves user to the next question"""
 	if not QUESTIONS:
 		flash('No questions available. Ensure QandA.csv exists and has data.')
 		return redirect(url_for('index'))
@@ -123,6 +126,7 @@ def next_q():
 
 @app.route('/random')
 def random_q():
+	"""Moves user to the a random question"""
 	if not QUESTIONS:
 		flash('No questions available. Ensure QandA.csv exists and has data.')
 		return redirect(url_for('index'))
@@ -135,6 +139,7 @@ def random_q():
 
 @app.route('/answer')
 def view_answer():
+	"""Displays the answer to teh current question"""
 	if 'q_index' not in session:
 		flash('No current question selected. Press Next Q or Random Q first.')
 		return redirect(url_for('index'))
@@ -145,13 +150,14 @@ def view_answer():
 
 @app.route('/about')
 def about():
+	"""Moves to teh about QandA page"""
 	return render_template('about.html')
 
 
 if __name__ == '__main__':
 	# When run directly, start the Flask dev server
 	if not QUESTIONS:
-		print('Warning: No questions loaded from the Database. Update the database with format: ID,Question,Answer')
+		print('Warning: No questions loaded. Update the database with format: ID,Question,Answer')
 
 	# If running in an interactive environment (notebook), disable the reloader
 	# because the reloader spawns a child and exits the parent with SystemExit(1).
