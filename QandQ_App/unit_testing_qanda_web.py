@@ -75,7 +75,7 @@ class QandAWebTest(unittest.TestCase):
         response = self.app.get('/next', follow_redirects=True)
         self.assertIn(b"What is 2+2?", response.data)
 
-        # Fourth call: index wraps around using modulo back "Q1: What is the capital of France?"to 0 (Q1)
+        # Fourth call: index wraps around using modulo back "Name the French capital"to 0 (Q1)
         response = self.app.get('/next', follow_redirects=True)
         self.assertIn(b"Name the French capital", response.data)
 
