@@ -19,7 +19,8 @@ def migrate_csv_to_d1(csv_path):
         sys.exit(1)
         
     if not Path(db_path).exists():
-        print(f"Error: D1 database not found. Run 'wrangler d1 execute qanda-questions --file=schema.sql' first")
+        print("""Error: D1 database not found. 
+        Run 'wrangler d1 execute qanda-questions --file=schema.sql' first""")
         sys.exit(1)
 
     conn = sqlite3.connect(db_path)
@@ -30,7 +31,8 @@ def migrate_csv_to_d1(csv_path):
         # Skip header if it exists
         try:
             first_row = next(reader)
-            if not first_row[0].isdigit():  # If first column isn't an ID number, assume it's a header
+            # If first column isn't an ID number, assume it's a header
+            if not first_row[0].isdigit():  
                 print("Skipping header row")
             else:
                 # It was data, insert it
@@ -51,7 +53,8 @@ def migrate_csv_to_d1(csv_path):
                 )
     
     conn.commit()
-    print(f"Migration complete. Run 'wrangler d1 execute qanda-questions --command=\"SELECT * FROM questions;\"' to verify.")
+    print("""Migration complete. 
+    Run 'wrangler d1 execute qanda-questions --command=\"SELECT * FROM questions;\"' to verify.""")
 
 if __name__ == '__main__':
     csv_path = Path(__file__).parent / 'QandA.csv'

@@ -1,7 +1,9 @@
+"""
 ###
-#Four  unit tests written by Google Gemini using the following AI prompt
-#"please write four unit tests for the attached python file."
+Four  unit tests written by Google Gemini using the following AI prompt
+"please write four unit tests for the attached python file."
 ###
+"""
 
 import unittest
 from unittest.mock import patch, MagicMock
@@ -10,6 +12,7 @@ from flask import url_for
 
 # Setup the testing environment and mock database access
 class QandAWebTest(unittest.TestCase):
+    """Unit testing functions"""
 
     def setUp(self):
         """Set up the test client and mock data."""
