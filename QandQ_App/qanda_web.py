@@ -71,7 +71,7 @@ app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
 
 
 @app.teardown_appcontext
-def close_db(error):
+def close_db():
     """Close database connection at the end of request."""
     if 'db' in g:
         g.db.close()
@@ -85,7 +85,8 @@ with app.app_context():
 @app.context_processor
 def inject_counts():
     """Calculates the amount of questions available"""
-    return dict(total_questions=len(QUESTIONS))
+    total_questions = {"total_questions": len(QUESTIONS)}   
+    return total_questions
 
 
 @app.route('/')

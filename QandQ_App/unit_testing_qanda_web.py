@@ -6,9 +6,9 @@ Four  unit tests written by Google Gemini using the following AI prompt
 """
 
 import unittest
-from unittest.mock import patch, MagicMock
-from QandAWed import app, QUESTIONS, ANSWERS # Import the app and globals
-from flask import url_for
+from unittest.mock import patch#, MagicMock
+from qanda_web import app, QUESTIONS, ANSWERS # Import the app and globals
+#from flask import url_for
 
 # Setup the testing environment and mock database access
 class QandAWebTest(unittest.TestCase):
@@ -24,15 +24,15 @@ class QandAWebTest(unittest.TestCase):
         self.original_answers = list(ANSWERS)
 
         # Set up mock data for testing routes
-        self.mock_questions = ["Q1: What is the capital of France?", "Q2: What is the primary color of the sky?", "Q3: What is 2 + 2?"]
-        self.mock_answers = ["A1: Paris", "A2: Blue", "A3: 4"]
+        self.mock_quest = ["Name the French capital?", "What color is the sky?", "What is 2+2?"]
+        self.mock_ans = ["Paris", "Blue", "4"]
 
         # Directly manipulate the global state for route testing simplicity
         # Note: In a real-world scenario, mocking load_qas() is safer.
         QUESTIONS.clear()
-        QUESTIONS.extend(self.mock_questions)
+        QUESTIONS.extend(self.mock_quest)
         ANSWERS.clear()
-        ANSWERS.extend(self.mock_answers)
+        ANSWERS.extend(self.mock_ans)
 
         # Clear session before each test
         with self.app as client:
