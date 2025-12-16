@@ -58,6 +58,7 @@ def load_qas():
             for row in rows:
                 questions.append(row['question'])
                 answers.append(row['answer'])
+    #pylint: disable=broad-except
     except Exception as e:
         print(f"Database error: {e}")
 
@@ -71,7 +72,7 @@ app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
 
 
 @app.teardown_appcontext
-def close_db():
+def close_db(error):
     """Close database connection at the end of request."""
     if 'db' in g:
         g.db.close()
@@ -85,7 +86,7 @@ with app.app_context():
 @app.context_processor
 def inject_counts():
     """Calculates the amount of questions available"""
-    total_questions = {"total_questions": len(QUESTIONS)}   
+    total_questions = {"total_questions": len(QUESTIONS)}
     return total_questions
 
 
