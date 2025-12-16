@@ -6,7 +6,7 @@ from qanda_web import app, QUESTIONS, ANSWERS
 
 
 @pytest.fixture
-def clientappfunc():
+def client():
     """Configures the app for testing and provides a test client."""
     app.config['TESTING'] = True
 
@@ -22,10 +22,10 @@ def clientappfunc():
     ANSWERS.clear()
     ANSWERS.extend(mock_ans)
 
-    with app.test_client() as clientapp:
-        with clientapp.session_transaction() as session:
+    with app.test_client() as client:
+        with client.session_transaction() as session:
             session.clear()
-        yield clientapp
+        yield client
 
     # Teardown: Restore original data
     QUESTIONS.clear()

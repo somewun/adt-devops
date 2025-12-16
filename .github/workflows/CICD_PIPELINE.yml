@@ -10,7 +10,7 @@ jobs:
 #Linting of the code using pylint
   build:
     runs-on: ubuntu-latest
-    name: QabdA Linting
+    name: QandA Linting
     strategy:
       matrix:
         python-version: ["3.10"]
