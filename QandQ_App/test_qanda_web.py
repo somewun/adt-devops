@@ -6,7 +6,7 @@ from qanda_web import app, QUESTIONS, ANSWERS
 
 
 @pytest.fixture
-def client():
+def clientapp():
     """Configures the app for testing and provides a test client."""
     app.config['TESTING'] = True
 
