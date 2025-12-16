@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-#Linting of the code
+#Linting of the code using pylint
   build:
     runs-on: ubuntu-latest
     name: QabdA Linting
@@ -24,11 +24,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pylint
+        pip install flask
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
 
-#Deploys the app to Render
+#Deploy the app to Render
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Render
