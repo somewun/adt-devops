@@ -1,0 +1,40 @@
+name: QandA CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+#Linting of the code
+  build:
+    runs-on: ubuntu-latest
+    name: QabdA Linting
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint
+    - name: Analysing the code with pylint
+      run: |
+        pylint $(git ls-files '*.py')
+
+#Deploys the app to Render
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Render
+    steps:
+      - uses: JorgeLNJunior/render-deploy@v1.4.6
+        with:
+          service_id: ${{ secrets.RENDER_SERVICE_ID }}
+          api_key: ${{ secrets.RENDER_API_KEY }}
+          wait_deploy: true
