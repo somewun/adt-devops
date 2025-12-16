@@ -9,13 +9,13 @@ from pathlib import Path
 import sqlite3
 import sys
 
-def migrate_csv_to_d1(csv_path):
+def migrate_csv_to_d1(csv_loc):
     """Migrate CSV data to D1 database (local development version)."""
     # For local development, D1 uses SQLite
     db_path = '.wrangler/state/d1/DB.db'
 
-    if not Path(csv_path).exists():
-        print(f"Error: CSV file not found: {csv_path}")
+    if not Path(csv_loc).exists():
+        print(f"Error: CSV file not found: {csv_loc}")
         sys.exit(1)
 
     if not Path(db_path).exists():
@@ -26,7 +26,7 @@ def migrate_csv_to_d1(csv_path):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    with open(csv_path, newline='', encoding='utf-8') as fh:
+    with open(csv_loc, newline='', encoding='utf-8') as fh:
         reader = csv.reader(fh)
         # Skip header if it exists
         try:
