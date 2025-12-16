@@ -1,5 +1,7 @@
-import pytest
+"""Testing file for unit testing teh qanda_web.py file"""
+
 from unittest.mock import patch
+import pytest
 from qanda_web import app, QUESTIONS, ANSWERS
 
 
@@ -20,10 +22,10 @@ def client():
     ANSWERS.clear()
     ANSWERS.extend(mock_ans)
 
-    with app.test_client() as client:
-        with client.session_transaction() as session:
+    with app.test_client() as clientapp:
+        with clientapp.session_transaction() as session:
             session.clear()
-        yield client
+        yield clientapp
 
     # Teardown: Restore original data
     QUESTIONS.clear()
