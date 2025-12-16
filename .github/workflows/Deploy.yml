@@ -1,4 +1,4 @@
-name: QandA Render Deploy
+name: QandA Deploy
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy
+    name: Deploy to Render
     steps:
       - uses: JorgeLNJunior/render-deploy@v1.4.6
         with:

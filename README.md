@@ -1,20 +1,20 @@
-**ADT DevOps**
+**ADT DevOps**  
 
 Using this Repo to store my Uni work for a DevOps module.  
 
-Current app version: 0.0.2
+Current app version: 0.0.2  
 
 To Do list:  
   
 unit testing scripts - [First Draft written]  
-automate the CI/CD in github - Started but needs lots of work still   
+automate the CI/CD in github - *currently deploys but needs to include Testing and Linting*  
 automate the deployment to Render 
 Developer stories - [First draft written but need refining]  
 
-**Things to do:**
+**Things to do:**  
 
 Have a deployed app,  
-    - CDeploys to Render - app URL [adt-devops.onrender.com]  
+    - Deploy to Render - app URL [adt-devops.onrender.com] - DONE  
     - Check GitHub settings for secrets - DONE  
     
 Ensure the pipeline will have enough features (In the GitHub Actions)  
@@ -27,13 +27,12 @@ Monitoring
     - Think about timing the solution?  
     - Render monitoring?  
 
-The app needs to have these built into the app/pipeline to run (tests etc)  
+*The app needs to have these built into the app/pipeline to run (tests etc)*  
+
+Think about the user (developer) stories for each of these things to start planning for my presentations,  extend the stories to show how this benefits the full team and why this is important. [First Draft Written]  
 
 
-Think about the user (developer) stories for each of these things to start planning for my presentations, extend the stories to show how this benefits the full team and why this is important.  
-
-Email with thoughts/questions on forum/send link to the repository - DONE  
-
+License:  
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
