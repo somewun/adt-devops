@@ -1,6 +1,7 @@
 import pytest
-from qanda_web import app, QUESTIONS, ANSWERS
 from unittest.mock import patch
+from qanda_web import app, QUESTIONS, ANSWERS
+
 
 @pytest.fixture
 def client():
@@ -64,7 +65,7 @@ def test_view_answer(client):
     """Test the /answer route reveals the correct answer."""
     client.get('/next')  # Set index to 0
     response = client.get('/answer', follow_redirects=True)
-    
+
     assert response.status_code == 200
     assert b"Name the French capital" in response.data
     assert b"Paris" in response.data
