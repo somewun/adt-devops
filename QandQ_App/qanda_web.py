@@ -72,7 +72,7 @@ app.secret_key = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
 
 
 @app.teardown_appcontext
-def close_db(error):
+def close_db(_error): #pylint: disable=unused-argument
     """Close database connection at the end of request."""
     if 'db' in g:
         g.db.close()
