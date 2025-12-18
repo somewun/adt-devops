@@ -38,6 +38,7 @@ def test_index_initial_load(client):
     """Test the initial state of the index page."""
     response = client.get('/')
     assert response.status_code == 200
+    print(response.data)
     assert b"Name the French capital" in response.data
     assert b"Answers will appear here" in response.data
     assert b'data-answer-visible="True"' not in response.data
