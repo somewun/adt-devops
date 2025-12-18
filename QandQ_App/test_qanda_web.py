@@ -24,6 +24,7 @@ def fixture_client():
 
     # pylint: disable-next=contextmanager-generator-missing-cleanup
     with app.test_client() as client:
+        # pylint: disable-next=contextmanager-generator-missing-cleanup
         with client.session_transaction() as session:
             session.clear()
         yield client
