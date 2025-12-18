@@ -73,6 +73,12 @@ def test_view_answer(client):
     assert b"Paris" in response.data
     #assert b'data-answer-visible="True"' in response.data
 
+    # Second call: index goes to 1 (Q2)
+    response = client.get('/next', follow_redirects=True)
+    response = client.get('/answer', follow_redirects=True)
+    assert b"What color is the sky?" in response.data
+    assert b"Blue" in response.data
+
 # 4. Test the /random route
 @patch('qanda_web.random.randrange', return_value=1)
 def test_random_question(mock_random, client):
