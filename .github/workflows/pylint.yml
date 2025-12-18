@@ -1,4 +1,4 @@
-name: QandA Pylint
+name: QandA Dev Testing
 
 on:
   push:

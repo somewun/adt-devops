@@ -32,6 +32,7 @@ jobs:
 #Unit testing - testing each function in the code
   build:
     runs-on: ubuntu-latest
+    name: QandA Unit Testing
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
@@ -52,7 +53,7 @@ jobs:
       run: |
         pytest
 
-#Deploy the app to Render
+#Deploy the app to Render by calling their deployment process
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Render
