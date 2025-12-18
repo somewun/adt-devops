@@ -7,7 +7,6 @@ from qanda_web import app, QUESTIONS, ANSWERS
 
 @pytest.fixture(name="client")
 def fixture_client():
-    # pylint: disable-next=contextmanager-generator-missing-cleanup
     """Configures the app for testing and provides a test client."""
     app.config['TESTING'] = True
 
@@ -22,7 +21,8 @@ def fixture_client():
     QUESTIONS.extend(mock_quest)
     ANSWERS.clear()
     ANSWERS.extend(mock_ans)
-
+    
+    # pylint: disable-next=contextmanager-generator-missing-cleanup
     with app.test_client() as client:
         with client.session_transaction() as session:
             session.clear()
