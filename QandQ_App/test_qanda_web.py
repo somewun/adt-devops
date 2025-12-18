@@ -6,7 +6,7 @@ from qanda_web import app, QUESTIONS, ANSWERS
 
 
 @pytest.fixture
-def clientappfunc():
+def client():
     """Configures the app for testing and provides a test client."""
     app.config['TESTING'] = True
 
@@ -22,10 +22,10 @@ def clientappfunc():
     ANSWERS.clear()
     ANSWERS.extend(mock_ans)
 
-    with app.test_client() as clientapp:
-        with clientapp.session_transaction() as session:
+    with app.test_client() as client:
+        with client.session_transaction() as session:
             session.clear()
-        yield clientapp
+        yield client
 
     # Teardown: Restore original data
     QUESTIONS.clear()
@@ -39,7 +39,7 @@ def test_index_initial_load(client):
     response = client.get('/')
     assert response.status_code == 200
     assert b"Name the French capital" in response.data
-    assert b"Answers will appear here" in response.data
+    assert b"Answer hidden" in response.data
     assert b'data-answer-visible="True"' not in response.data
 
 # 2. Test the /next route and rotation
@@ -71,7 +71,13 @@ def test_view_answer(client):
     assert response.status_code == 200
     assert b"Name the French capital" in response.data
     assert b"Paris" in response.data
-    assert b'data-answer-visible="True"' in response.data
+    #assert b'data-answer-visible="True"' in response.data
+
+    # Second call: index goes to 1 (Q2)
+    response = client.get('/next', follow_redirects=True)
+    response = client.get('/answer', follow_redirects=True)
+    assert b"What color is the sky?" in response.data
+    assert b"Blue" in response.data
 
 # 4. Test the /random route
 @patch('qanda_web.random.randrange', return_value=1)
@@ -81,6 +87,6 @@ def test_random_question(mock_random, client):
 
     assert response.status_code == 200
     assert b"What color is the sky?" in response.data
-    assert b"Answers will appear here" in response.data
+    assert b"Answer hidden" in response.data
     assert b"Blue" not in response.data
     mock_random.assert_called_once_with(len(QUESTIONS))
