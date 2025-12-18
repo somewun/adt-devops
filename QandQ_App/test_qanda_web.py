@@ -1,12 +1,12 @@
-"""Testing file for unit testing teh qanda_web.py file"""
+"""Testing file for unit testing the qanda_web.py file"""
 
 from unittest.mock import patch
 import pytest
 from qanda_web import app, QUESTIONS, ANSWERS
 
 
-@pytest.fixture
-def client():
+@pytest.fixture(name="client")
+def fixture_client():
     """Configures the app for testing and provides a test client."""
     app.config['TESTING'] = True
 
@@ -22,7 +22,9 @@ def client():
     ANSWERS.clear()
     ANSWERS.extend(mock_ans)
 
+    # pylint: disable-next=contextmanager-generator-missing-cleanup
     with app.test_client() as client:
+        # pylint: disable-next=contextmanager-generator-missing-cleanup
         with client.session_transaction() as session:
             session.clear()
         yield client
