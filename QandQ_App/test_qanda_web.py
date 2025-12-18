@@ -5,8 +5,8 @@ import pytest
 from qanda_web import app, QUESTIONS, ANSWERS
 
 
-@pytest.fixture
-def client():
+@pytest.fixture(name="client")
+def fixture_client():
     """Configures the app for testing and provides a test client."""
     app.config['TESTING'] = True
 
