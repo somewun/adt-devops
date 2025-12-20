@@ -7,8 +7,8 @@ Current app version: 0.0.4
 To Do list:  
   
 unit testing scripts - [First Draft written]  
-automate the CI/CD in github - *currently deploys but needs to include Testing and Linting*  
-automate the deployment to Render 
+automate the CI/CD in github - [First Draft written]
+automate the deployment to Render - DONE
 Developer stories - [First draft written but need refining]  
 
 **Things to do:**  
