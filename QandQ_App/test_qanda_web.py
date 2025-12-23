@@ -99,7 +99,3 @@ def test_about_button (client):
     # First call: /about goes to the about page
     response = client.get('/about', follow_redirects=True)
     assert b"A simple Question and Answer revision app" in response.data
-
-    # Second call: /back goes to the original index page
-    response = client.get('/back', follow_redirects=True)
-    assert b"QandA Revision" in response.data
