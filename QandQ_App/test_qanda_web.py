@@ -92,3 +92,10 @@ def test_random_question(mock_random, client):
     assert b"Answer hidden" in response.data
     assert b"Blue" not in response.data
     mock_random.assert_called_once_with(len(QUESTIONS))
+
+# 5. Test the /about route (an integration test to check navigation between pages)
+def test_about_button (client):
+    """Test the /about route moves to teh about page."""
+    # First call: /about goes to the about page
+    response = client.get('/about', follow_redirects=True)
+    assert b"A simple Question and Answer revision app" in response.data
