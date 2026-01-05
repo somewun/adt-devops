@@ -5,9 +5,8 @@
 3.	As a code tester the Automation of basic testing allows me to ensure that the code hits a basic level of functionality.
 4.	As a DevOps Engineer deploying the infrastructure as code means that the deployment process is repeatable and reproducible.
 5.	As a security developer the standardised process allows for security to be baked into the process more easily.
-6.	As a security developer monitoring the access to the tool will help identify potential areas of weakness.
-7.	As a data architect using the architecture monitoring tools allow for future improvements to the system.
-8.	As an operations engineer the automation of the deployment ensures that the latest builds of the app are pushed live quickly and efficiently to the end user.
+6.	As a data architect using the architecture monitoring tools allow for future improvements to the system.
+7.	As an operations engineer the automation of the deployment ensures that the latest builds of the app are pushed live quickly and efficiently to the end user.
 
 
 All, this allows for greater more effective monitoring of the code and security

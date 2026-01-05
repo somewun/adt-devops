@@ -6,10 +6,10 @@ Current app version: 0.0.4
 
 To Do list:  
   
-unit testing scripts - [First Draft written]  
-automate the CI/CD in github - [First Draft written]
+unit testing scripts - DONE 
+automate the CI/CD in github - DONE
 automate the deployment to Render - DONE
-Developer stories - [First draft written but need refining]  
+Developer stories - DONE  
 
 **Things to do:**  
 
@@ -18,18 +18,17 @@ Have a deployed app,
     - Check GitHub settings for secrets - DONE  
     
 Ensure the pipeline will have enough features (In the GitHub Actions)  
-    - Config management  
-    - Unit tests  [First draft written]  
-    - Linting  [First draft written]  
-    - Logging of tests  
+    - Config management - *Look at how best to discuss this*  
+    - Unit tests  DONE  
+    - Linting  DONE  
+    - Logging of tests - *Look into methods for this*  
 
 Monitoring  
-    - Think about timing the solution?  
-    - Render monitoring?  
-
-*The app needs to have these built into the app/pipeline to run (tests etc)*  
+    - Think about timing the solution? - *Look into methods for this*  
+    - Render monitoring? - *Look into*  
 
 Think about the user (developer) stories for each of these things to start planning for my presentations,  extend the stories to show how this benefits the full team and why this is important. [First Draft Written]  
+
 
 
 License:  
