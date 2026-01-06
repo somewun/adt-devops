@@ -3,20 +3,28 @@ Things to record:
 
 No Sound:
 
-Making a change on vs code
-making a pull request on github
-showing the tests that run
-Show the GitHub actions code then:
-push to prod and show actions running
-Show it from the Render end too
-Show the testing flw running with a fail
-
+Some test footage - DONE
+DS1) Making a change on vs code (show original app) - 
+DS1) making a pull request on github - 
+DS2) Show the GitHub actions code - 
+DS2) Show the change in the live production app - 
+DS3) showing the tests that run - 
+DS3) push to prod and show actions running - 
+DS3) Show the testing flow running with a fail - 
+DS4) Show the requirements.txt file - 
+DS4) Show it from the Render end too - 
+DS5) Show Semgrep as an option for security static analysis - 
+DS6) Show the Render logs for monitoring site usage - [Next Week]
+DS6) Show the times for deployment as one of the metrics - 
+DS7) ?????
+Each of the developer stories slides - DONE
+Intro and Conslusion slides - 
 
 With Sound:
-Record the intro to the presentation
-Record discussion over the developer stories slides?
-Record the conclusions
+Record the intro to the presentation - 
+Record discussion over the developer stories slides - 
+Record the conclusions - 
 
 Sound Only:
-Record discussion over the developer stories slides separately
-Record the use of github and actions etc from above with sound too but recorded separately
+Record discussion over the developer stories slides separately - 
+Record the use of github and actions etc from above with sound too but recorded separately - 
