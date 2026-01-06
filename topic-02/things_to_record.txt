@@ -1,0 +1,22 @@
+Things to record:
+
+
+No Sound:
+
+Making a change on vs code
+making a pull request on github
+showing the tests that run
+Show the GitHub actions code then:
+push to prod and show actions running
+Show it from the Render end too
+Show the testing flw running with a fail
+
+
+With Sound:
+Record the intro to the presentation
+Record discussion over the developer stories slides?
+Record the conclusions
+
+Sound Only:
+Record discussion over the developer stories slides separately
+Record the use of github and actions etc from above with sound too but recorded separately
