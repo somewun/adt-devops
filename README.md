@@ -18,14 +18,15 @@ Have a deployed app,
     - Check GitHub settings for secrets - DONE  
     
 Ensure the pipeline will have enough features (In the GitHub Actions)  
-    - Config management - *Look at how best to discuss this*  
+    - Config management - DONE  
     - Unit tests  DONE  
     - Linting  DONE  
     - Logging of tests - *Look into methods for this*  
 
 Monitoring  
     - Think about timing the solution? - *Look into methods for this*  
-    - Render monitoring? - *Look into*  
+    - Render monitoring? - *Look into* 
+    - Additional monitoring available? - *Look into*  
 
 Think about the user (developer) stories for each of these things to start planning for my presentations,  extend the stories to show how this benefits the full team and why this is important. [First Draft Written]  
 
@@ -36,3 +37,7 @@ License:
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details
+
+
+
+DevOps is an organisational approach to collaboration between, but not limited to, development and IT operations teams allowing for quicker and more secure system development and release (Dyck, Penners and Lichter, 2015).
