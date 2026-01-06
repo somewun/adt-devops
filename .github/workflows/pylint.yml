@@ -23,6 +23,7 @@ jobs:
         pylint $(git ls-files '*.py')
 
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

@@ -27,6 +27,7 @@ jobs:
 
 #Unit testing - testing each function in the code
   test:
+    needs: build
     runs-on: ubuntu-latest
     name: QandA Unit Testing
     steps:
@@ -45,6 +46,7 @@ jobs:
 
 #Deploy the app to Render by calling their deployment process
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     name: Deploy to Render
     steps:
