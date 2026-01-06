@@ -6,9 +6,9 @@ Current app version: 0.0.4
 
 To Do list:  
   
-unit testing scripts - DONE 
-automate the CI/CD in github - DONE
-automate the deployment to Render - DONE
+unit testing scripts - DONE  
+automate the CI/CD in github - DONE  
+automate the deployment to Render - DONE  
 Developer stories - DONE  
 
 **Things to do:**  
@@ -25,7 +25,7 @@ Ensure the pipeline will have enough features (In the GitHub Actions)
 
 Monitoring  
     - Think about timing the solution? - *Look into methods for this*  
-    - Render monitoring? - *Look into* 
+    - Render monitoring? - *Look into*  
     - Additional monitoring available? - *Look into*  
 
 Think about the user (developer) stories for each of these things to start planning for my presentations,  extend the stories to show how this benefits the full team and why this is important. [First Draft Written]  
@@ -39,5 +39,3 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details
 
 
-
-DevOps is an organisational approach to collaboration between, but not limited to, development and IT operations teams allowing for quicker and more secure system development and release (Dyck, Penners and Lichter, 2015).
