@@ -95,7 +95,7 @@ def test_random_question(mock_random, client):
 
 # 5. Test the /about route (an integration test to check navigation between pages)
 def test_about_button (client):
-    """Test the /about route moves to teh about page."""
+    """Test the /about route moves to the about page."""
     # First call: /about goes to the about page
     response = client.get('/about', follow_redirects=True)
     assert b"A simple Question and Answer revision app" in response.data
