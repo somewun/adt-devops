@@ -119,7 +119,7 @@ def next_q():
         return redirect(url_for('index'))
 
     q_index = session.get('q_index', -1)
-    q_index = (q_index + 1) % len(QUESTIONS)
+    q_index = (q_index + 2) % len(QUESTIONS)
     session['q_index'] = q_index
     session['show_answer'] = False
     return redirect(url_for('index'))
