@@ -2,7 +2,7 @@
 
 Using this Repo to store my Uni work for a DevOps module.  
 
-Current app version: 0.0.4  
+Current app version: 0.0.5  
 
 To Do list:  
   

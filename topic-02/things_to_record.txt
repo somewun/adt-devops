@@ -21,7 +21,7 @@ Each of the developer stories slides - DONE
 Intro and Conslusion slides - 
 
 With Sound:
-Record the intro to the presentation - 
+Record the intro to the presentation - DONE
 Record discussion over the developer stories slides - 
 Record the conclusions - 
 
